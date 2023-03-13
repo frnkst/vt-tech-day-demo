@@ -11,6 +11,6 @@ describe('App', () => {
 	it('displays available seats correctly', () => {
 		render(<App />);
 
-		expect(screen.getByText(/Feature Flags/)).toHaveTextContent("Available Seats: 4");
+		expect(screen.getByTestId("Feature Flags")).toHaveTextContent("Available Seats: 4");
 	});
 });
