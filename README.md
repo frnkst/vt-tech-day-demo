@@ -18,3 +18,5 @@ pnpm run dev
 vitest
 ```
 
+##Setup
+Use node >=v16
