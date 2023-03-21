@@ -1,35 +1,9 @@
 import '@/App.css'
 import JSConfetti from 'js-confetti'
-import { useState } from 'react';
+import {useState} from 'react';
 
 const jsConfetti = new JSConfetti();
 
-const breakoutSessions = [
-  {
-    title: "Having fun with flags",
-    availableSeats: 4
-  },
-  {
-    title: "Kafka Introduction",
-    availableSeats: 10
-  },
-  {
-    title: "Software Defined Network",
-    availableSeats: 10
-  },
-  {
-    title: "Using the potential of the Azure Platform",
-    availableSeats: 10
-  },
-  {
-    title: "Mobile Apps & Frontend @ Digihub",
-    availableSeats: 10
-  },
-  {
-    title: "Transformation of a legacy application",
-    availableSeats: 10
-  }
-];
 
 
 async function throwConfetti() {
@@ -37,6 +11,32 @@ async function throwConfetti() {
 }
 
 function App() {
+  const breakoutSessions = [
+    {
+      title: "Having fun with flags",
+      availableSeats: 4
+    },
+    {
+      title: "Kafka Introduction",
+      availableSeats: 10
+    },
+    {
+      title: "Software Defined Network",
+      availableSeats: 10
+    },
+    {
+      title: "Using the potential of the Azure Platform",
+      availableSeats: 10
+    },
+    {
+      title: "Mobile Apps & Frontend @ Digihub",
+      availableSeats: 10
+    },
+    {
+      title: "Transformation of a legacy application",
+      availableSeats: 10
+    }
+  ];
   const [breakouts, setBreakouts] = useState(breakoutSessions);
 
   return (
