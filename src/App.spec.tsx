@@ -38,11 +38,20 @@ describe('App', () => {
 		act(() => {saveButton.click()});
 		expect(textField).not.toBeInTheDocument();
 		expect(cancelButton).not.toBeInTheDocument();
+		expect(screen.getByTestId('Having fun with flags')).toHaveTextContent("Available Seats: 3");
 	});
 
-	it('Aborts booking process after clicking cancel', () => {
-		render(<App />);
+	it('Aborts booking process after clicking cancel', async () => {
+		render(<App/>);
 
-		expect(screen.getAllByRole('button', { name: 'Book'})[0]).toBeVisible();
+		const bookButton = screen.getAllByRole('button', {name: 'Book'})[0];
+		act(() => bookButton.click());
+		const cancelButton = screen.getAllByRole('button', {name: 'Cancel'})[0];
+		act(() => cancelButton.click());
+		const textField = await screen.queryByRole('textbox');
+
+		expect(textField).not.toBeInTheDocument();
+		expect(cancelButton).not.toBeInTheDocument();
+		expect(screen.getByTestId('Having fun with flags')).toHaveTextContent("Available Seats: 4");
 	});
 });
