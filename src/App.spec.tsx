@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import {act, fireEvent, render, screen} from '@testing-library/react';
 import App from './App';
 
 describe('App', () => {
@@ -19,6 +19,28 @@ describe('App', () => {
 	});
 
 	it('shows a book button', () => {
+		render(<App />);
+
+		expect(screen.getAllByRole('button', { name: 'Book'})[0]).toBeVisible();
+	});
+
+	it('Decreases available seat count after booking', async () => {
+		render(<App/>);
+
+		const bookButton = screen.getAllByRole('button', {name: 'Book'})[0];
+		act(() => bookButton.click());
+		const cancelButton = screen.getAllByRole('button', {name: 'Cancel'})[0];
+		const textField = await screen.getByRole('textbox');
+		expect(textField).toBeVisible();
+		expect(cancelButton).toBeVisible();
+		act(() => {fireEvent.change(textField, {target: {value: 'Zeno S'}})});
+		const saveButton = screen.getAllByRole('button', {name: 'Save'})[0];
+		act(() => {saveButton.click()});
+		expect(textField).not.toBeInTheDocument();
+		expect(cancelButton).not.toBeInTheDocument();
+	});
+
+	it('Aborts booking process after clicking cancel', () => {
 		render(<App />);
 
 		expect(screen.getAllByRole('button', { name: 'Book'})[0]).toBeVisible();
